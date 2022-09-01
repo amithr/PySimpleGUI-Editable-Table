@@ -1,5 +1,4 @@
 import PySimpleGUI as sg
-import random, string
 
 def generate_table_data():
     headings = ['Name', 'ID', 'Grade1', 'Grade2', 'Grade3']
@@ -84,9 +83,9 @@ def generate_table():
     edit = False
 
     headings, data = generate_table_data()
-
     sg.set_options(dpi_awareness=True)
     layout = [[sg.Table(values=data, headings=headings, max_col_width=25,
+                        font=("Arial", 15),
                         auto_size_columns=True,
                         # display_row_numbers=True,
                         justification='right',
@@ -111,9 +110,11 @@ def generate_table():
         event, values = window.read()
         if event in (sg.WIN_CLOSED, 'Exit'):
             break
-        # Checks if the event object is of tuple data type, indicating a click on a cell
+        # Checks if the event object is of tuple data type, indicating a click on a cell'
         elif isinstance(event, tuple) and event[2][0]:
             cell = row, col = event[2]
+            print(row)
+
             # Displays that coordinates of the cell that was clicked on
             window['-CLICKED_CELL-'].update(cell)
             edit_cell(window, '-TABLE-', row+1, col, justify='right')
