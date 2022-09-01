@@ -41,7 +41,7 @@ def edit_cell(window, key, row, col, justify='left'):
         return
 
     edit = True
-    # Create root window that will exist on top of the PySimpleGUI table
+    # Get the Tkinter functionality for our window
     root = window.TKroot
     # Gets the Widget object from the PySimpleGUI table - a PySimpleGUI table is really
     # what's called a TreeView widget in TKinter
@@ -54,7 +54,7 @@ def edit_cell(window, key, row, col, justify='left'):
 
     # Create a new container that acts as container for the editable text input widget
     frame = sg.tk.Frame(root)
-    # put frame in same location as table widget
+    # put frame in same location as selected cell
     frame.place(x=x, y=y, anchor="nw", width=width, height=height)
 
     # textvariable represents a text value
