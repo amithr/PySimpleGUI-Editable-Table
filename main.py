@@ -99,7 +99,7 @@ def generate_table():
                         expand_y=True,
                         enable_click_events=True,  # Comment out to not enable header and other clicks
                         )],
-              [sg.Button('Read'), sg.Button('Double'), sg.Button('Change Colors')],
+
               [sg.Text('Cell clicked:'), sg.T(key='-CLICKED_CELL-')]]
 
 
@@ -111,9 +111,10 @@ def generate_table():
         if event in (sg.WIN_CLOSED, 'Exit'):
             break
         # Checks if the event object is of tuple data type, indicating a click on a cell'
-        elif isinstance(event, tuple) and event[2][0]:
-            cell = row, col = event[2]
-            print(row)
+        elif isinstance(event, tuple):
+            if isinstance(event[2][0], int) and event[2][0] > -1:
+                cell = row, col = event[2]
+                print(row)
 
             # Displays that coordinates of the cell that was clicked on
             window['-CLICKED_CELL-'].update(cell)
